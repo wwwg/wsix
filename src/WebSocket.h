@@ -4,11 +4,12 @@
 // C imports
 #include <cstdio>
 #include <cstdlib>
-#include <cerrno>
 #include <cstring>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include <sys/un.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <unistd.h> 
 
 // CXX imports
 #include <string>
