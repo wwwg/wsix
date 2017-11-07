@@ -1,4 +1,5 @@
 #include "WebSocket.h"
+#define READ_BUFFER_LEN 1024
 
 wsix::WebSocket::WebSocket(string _uri, int _port) {
 	uri = _uri;
@@ -20,7 +21,7 @@ wsix::WebSocket::WebSocket(string _uri, int _port) {
         server->h_length);
 	serverAddress.sin_port = htons(_port);
 }
-wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
+wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr, string _hostUri) {
 	fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (fd < 0) {
 		throw "Failed to create socket";
@@ -28,12 +29,24 @@ wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
 	}
 	server = _host;
 	serverAddress = _addr;
+	uri = _hostUri;
 }
 bool wsix::WebSocket::connect() {
+	stringstream hsstream;
+	hsstream << "GET ws://" << uri << "/ HTTP/1.1\r\n" <<
+	"Host: " << uri << "\r\n" <<
+	"Connection: Upgrade\r\n" <<
+	"Upgrade: websocket\r\n" <<
+	"Sec-WebSocket-Version: 13\r\n" <<
+	"User-Agent: wsix\r\n" <<
+	"Accept-Language: en-US,en;q=0.8\r\n" <<
+	"Sec-WebSocket-Key: EATKMOE1Y+WetOtQeSjh/w==\r\n\r\n";
+	httpHandShake = hsstream.str();
 	int success = ::connect(fd, (struct sockaddr*) &serverAddress, sizeof(serverAddress));
-	if (success < 0) {
-		return false;
-	}
-	cout << "connected" << endl;
+	if (success < 0) return false;
+	int bytesWrote = write(fd, httpHandShake.c_str(), httpHandShake.length() + 1);
+	char indata[READ_BUFFER_LEN];
+	int bytesRead = read(fd, indata, READ_BUFFER_LEN);
+	cout << indata << endl;
 	return true;
 }

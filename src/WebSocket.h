@@ -15,13 +15,14 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 namespace wsix {
 	class WebSocket {
 	public:
 		WebSocket(string, int);
-		WebSocket(struct hostent*, struct sockaddr_in);
+		WebSocket(struct hostent*, struct sockaddr_in, string);
 		bool connect(void);
 	private:
 		string uri;
@@ -29,6 +30,7 @@ namespace wsix {
 		int fd;
 		struct sockaddr_in serverAddress;
     	struct hostent* server;
+    	string httpHandShake;
 	};
 };
 
