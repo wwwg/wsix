@@ -14,6 +14,11 @@ wsix::WebSocket::WebSocket(string _uri, int _port) {
 		return;
 	}
 	memset(&serverAddress, 0, sizeof(serverAddress));
+	serverAddress.sin_family = AF_INET;
+	memcpy((char *)&serverAddress.sin_addr.s_addr,
+		(char *)server->h_addr,
+        server->h_length);
+	serverAddress.sin_port = htons(portno);
 }
 wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
 	fd = socket(AF_INET, SOCK_STREAM, 0);
