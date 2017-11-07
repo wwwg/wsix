@@ -20,6 +20,7 @@ using namespace std;
 
 #define SERVER_KEY "6hgCA/HMnPWzCz6qq2bWB3/YSFw="
 #define READ_BUFFER_LEN 1024
+#define INITIAL_READ_BUF_LEN 512
 
 namespace wsix {
 	class WebSocket {
