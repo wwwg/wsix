@@ -19,9 +19,13 @@ using namespace std;
 namespace wsix {
 	class WebSocket {
 	public:
-		WebSocket(string);
+		WebSocket(string, int);
 	private:
 		string uri;
+		int port;
+		sock_t sock;
+		struct sockaddr_in serverAddress;
+    	struct hostent* server;
 	};
 };
 
