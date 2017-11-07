@@ -49,3 +49,13 @@ bool wsix::WebSocket::connect() {
 	cout << indata << endl;
 	return true;
 }
+char[] wsix::WebSocket::read() {
+	char ret[INITIAL_READ_BUF_LEN];
+	// TODO
+	return ret;
+}
+char* wsix::WebSocket::read(size_t len) {
+	char* ret = malloc(len);
+	// TODO
+	return ret;
+}

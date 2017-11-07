@@ -28,6 +28,8 @@ namespace wsix {
 		WebSocket(string, int);
 		WebSocket(struct hostent*, struct sockaddr_in, string);
 		bool connect(void);
+		char[] read();
+		char* read(size_t);
 	private:
 		string uri;
 		int port;
