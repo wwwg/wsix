@@ -20,6 +20,8 @@ namespace wsix {
 	class WebSocket {
 	public:
 		WebSocket(string);
+	private:
+		string uri;
 	};
 };
 
