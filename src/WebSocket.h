@@ -24,7 +24,7 @@ namespace wsix {
 	private:
 		string uri;
 		int port;
-		sock_t sock;
+		int fd;
 		struct sockaddr_in serverAddress;
     	struct hostent* server;
 	};
