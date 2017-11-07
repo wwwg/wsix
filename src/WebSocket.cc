@@ -3,7 +3,7 @@
 wsix::WebSocket::WebSocket(string _uri, int _port) {
 	uri = _uri;
 	port = _port;
-	fd = socket(AF_INET, SOCKET_STREAM, 0);
+	fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (fd < 0) {
 		throw "Failed to create socket";
 		return;
@@ -15,9 +15,7 @@ wsix::WebSocket::WebSocket(string _uri, int _port) {
 	}
 }
 wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
-	uri = _uri;
-	port = _port;
-	fd = socket(AF_INET, SOCKET_STREAM, 0);
+	fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (fd < 0) {
 		throw "Failed to create socket";
 		return;
