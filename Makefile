@@ -20,3 +20,8 @@ $(OUT): $(OBJS)
 clean:
 	rm -f *.o wasmdec
 	rm -f src/*.o
+
+test:
+	clear
+	make default
+	./wsix-test
