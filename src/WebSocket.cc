@@ -23,3 +23,6 @@ wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
 	server = _host;
 	serverAddress = _addr;
 }
+bool wsix::WebSocket::connect() {
+	return false;
+}

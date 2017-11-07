@@ -22,6 +22,7 @@ namespace wsix {
 	public:
 		WebSocket(string, int);
 		WebSocket(struct hostent*, struct sockaddr_in);
+		bool connect(void);
 	private:
 		string uri;
 		int port;
