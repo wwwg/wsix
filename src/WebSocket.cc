@@ -1,5 +1,4 @@
 #include "WebSocket.h"
-#define READ_BUFFER_LEN 1024
 
 wsix::WebSocket::WebSocket(string _uri, int _port) {
 	uri = _uri;
