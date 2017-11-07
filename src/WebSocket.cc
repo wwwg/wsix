@@ -30,5 +30,10 @@ wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
 	serverAddress = _addr;
 }
 bool wsix::WebSocket::connect() {
-	return false;
+	int success = ::connect(fd, (struct sockaddr*) &serverAddress, sizeof(serverAddress));
+	if (success < 0) {
+		return false;
+	}
+	cout << "connected" << endl;
+	return true;
 }
