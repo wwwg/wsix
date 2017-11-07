@@ -20,6 +20,7 @@ namespace wsix {
 	class WebSocket {
 	public:
 		WebSocket(string, int);
+		WebSocket(struct hostent*, struct sockaddr_in);
 	private:
 		string uri;
 		int port;
