@@ -13,6 +13,7 @@ wsix::WebSocket::WebSocket(string _uri, int _port) {
 		throw "Failed to resolve server";
 		return;
 	}
+	memset(&serverAddress, 0, sizeof(serverAddress));
 }
 wsix::WebSocket::WebSocket(struct hostent* _host, struct sockaddr_in _addr) {
 	fd = socket(AF_INET, SOCK_STREAM, 0);
