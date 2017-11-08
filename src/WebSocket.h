@@ -34,7 +34,7 @@ namespace wsix {
 		bool connect(void);
 		void read();
 		char* read(size_t);
-		void write(char*, size_t, OpCode);
+		void write(char*, unsigned long long, OpCode);
 	private:
 		string uri;
 		int port;

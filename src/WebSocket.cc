@@ -59,7 +59,15 @@ char* wsix::WebSocket::read(size_t len) {
 	// TODO
 	return ret;
 }
-void wsix::WebSocket::write(char* buffer, size_t len, OpCode op) {
-	vector<unsigned char> packet;
-	unsigned char fbit = 128;
+void wsix::WebSocket::write(char* buffer, unsigned long long len, OpCode op) {
+	unsigned char* packet = (unsigned char*)malloc(10 + len);
+	packet[0] = (unsigned char)(128 + (op << 1) + 1);
+	packet[1] = 127;
+	memcpy(packet + 2, &len, 8);
+	packet[10] = 0;
+	packet[11] = 0;
+	packet[12] = 0;
+	packet[13] = 0;
+	memcpy(packet + 15, buffer, len);
+	int bytesRead = ::write(fd, packet, (10 + len));
 }
