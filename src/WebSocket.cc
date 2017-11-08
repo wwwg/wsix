@@ -45,17 +45,17 @@ bool wsix::WebSocket::connect() {
 	if (success < 0) return false;
 	int bytesWrote = write(fd, httpHandShake.c_str(), httpHandShake.length() + 1);
 	char indata[READ_BUFFER_LEN];
-	int bytesRead = read(fd, indata, READ_BUFFER_LEN);
+	int bytesRead = ::read(fd, &indata[0], READ_BUFFER_LEN);
 	cout << indata << endl;
 	return true;
 }
-char[] wsix::WebSocket::read() {
-	char ret[INITIAL_READ_BUF_LEN];
-	// TODO
-	return ret;
+void wsix::WebSocket::read() {
+	uint ulen;
+	::read(fd, (void*)&ulen, sizeof(uint));
+	cout << "ulen: " << ulen << endl;
 }
 char* wsix::WebSocket::read(size_t len) {
-	char* ret = malloc(len);
+	char* ret = (char*)malloc(len);
 	// TODO
 	return ret;
 }

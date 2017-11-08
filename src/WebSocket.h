@@ -19,7 +19,7 @@
 using namespace std;
 
 #define SERVER_KEY "6hgCA/HMnPWzCz6qq2bWB3/YSFw="
-#define READ_BUFFER_LEN 1024
+#define READ_BUFFER_LEN (size_t)256
 #define INITIAL_READ_BUF_LEN 512
 
 namespace wsix {
@@ -28,7 +28,7 @@ namespace wsix {
 		WebSocket(string, int);
 		WebSocket(struct hostent*, struct sockaddr_in, string);
 		bool connect(void);
-		char[] read();
+		void read();
 		char* read(size_t);
 	private:
 		string uri;
