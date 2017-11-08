@@ -23,6 +23,10 @@ using namespace std;
 #define INITIAL_READ_BUF_LEN 512
 
 namespace wsix {
+	enum OpCode : unsigned int {
+		text = 0x1,
+		binary = 0x2
+	};
 	class WebSocket {
 	public:
 		WebSocket(string, int);
@@ -30,6 +34,7 @@ namespace wsix {
 		bool connect(void);
 		void read();
 		char* read(size_t);
+		void write(char*, size_t);
 	private:
 		string uri;
 		int port;
