@@ -43,7 +43,7 @@ bool wsix::WebSocket::connect() {
 	httpHandShake = hsstream.str();
 	int success = ::connect(fd, (struct sockaddr*) &serverAddress, sizeof(serverAddress));
 	if (success < 0) return false;
-	int bytesWrote = write(fd, httpHandShake.c_str(), httpHandShake.length() + 1);
+	int bytesWrote = ::write(fd, httpHandShake.c_str(), httpHandShake.length() + 1);
 	char indata[READ_BUFFER_LEN];
 	int bytesRead = ::read(fd, &indata[0], READ_BUFFER_LEN);
 	cout << indata << endl;
@@ -58,4 +58,8 @@ char* wsix::WebSocket::read(size_t len) {
 	char* ret = (char*)malloc(len);
 	// TODO
 	return ret;
+}
+void wsix::WebSocket::write(char* buffer, size_t len, OpCode op) {
+	vector<unsigned char> packet;
+	unsigned char fbit = 128;
 }
