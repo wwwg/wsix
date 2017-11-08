@@ -46,7 +46,7 @@ bool wsix::WebSocket::connect() {
 	int bytesWrote = ::write(fd, httpHandShake.c_str(), httpHandShake.length() + 1);
 	char indata[READ_BUFFER_LEN];
 	int bytesRead = ::read(fd, &indata[0], READ_BUFFER_LEN);
-	cout << indata << endl;
+	// cout << indata << endl;
 	return true;
 }
 void wsix::WebSocket::read() {
